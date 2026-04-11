@@ -7,3 +7,10 @@ def calculate_mean(data):
 if __name__ == "__main__":
     sample_data = np.array([1.2, 2.5, 3.8, 4.2, 5.1])
     print(f"Mean: {calculate_mean(sample_data)}")
+
+def calculate_stats(data):
+    mean = np.mean(data)
+    std = np.std(data)
+    max_val = np.max(data)
+    min_val = np.min(data)
+    return mean, std, max_val, min_val
