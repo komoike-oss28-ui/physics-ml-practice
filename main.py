@@ -1,4 +1,7 @@
 import numpy as np
+import matplotlib.pyplot as plt   
+from scipy.optimize import minimize 
+
 
 def calculate_mean(data):
     """データの平均を計算する（物理実験データの処理などを想定）"""
@@ -33,7 +36,6 @@ def irt_2pl_demo(theta, a, b):
     """
     return 1 / (1 + (1.7 * np.exp(-a * (theta - b))))
 
-import matplotlib.pyplot as plt
 
 # 単一の能力値
 print(irt_2pl_demo(theta=-0.14, a=1.0, b=0.2))  # → 0.3775
@@ -58,9 +60,6 @@ plt.show()
 [パラメータリカバリ初期実験]
 1: 真のパラメータを設定してデータ生成
 """
-import pandas as pd
-from scipy.optimize import minimize
-import matplotlib.pyplot as plt
 
 np.random.seed(42)
 
@@ -84,7 +83,6 @@ X = (np.random.uniform(size=(N, J)) < P).astype(int)
 """
 2: パラメータを推定(周辺最尤法)
 """
-from scipy.stats import norm
 
 def marginal_log_likelihood(params, X, n_quad=21):
     J = X.shape[1]
@@ -132,7 +130,7 @@ def plot_recovery(true_vals, est_vals, label):
     plt.show()
     return {'r': r, 'rmse': rmse, 'bias': bias}
 
-res_a = plot_recovery(true_a, est_a, 'a（discrimination）')
-res_b = plot_recovery(true_b, est_b, 'b（difficulty）')
+res_a = plot_recovery(true_a, est_a, 'a(discrimination)')
+res_b = plot_recovery(true_b, est_b, 'b(difficulty)')
 
 
